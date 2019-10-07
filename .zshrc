@@ -77,8 +77,10 @@ unalias -m '*'
 
 # User configuration
 
-export VISUAL=vim
-export EDITOR="$VISUAL"
+export EDITOR=vim
+export VISUAL="$EDITOR"
+
+export LESS="-iXFR"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -123,11 +125,18 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 
+# Increase keyboard responsiveness
+xset r rate 250 25
+
 # disable auto correct
 # unsetopt correct_all
 
 autoload -U compinit
 compinit
+
+# disable cyclic autocomplete
+setopt noautomenu
+setopt nomenucomplete
 
 # spaceship-prompt configuration
 
