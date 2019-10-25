@@ -115,6 +115,8 @@ alias h='history'
 
 alias vim='vim -p'
 
+alias pwdc='pwd | tr -d "\n" | xclip'
+
 alias 1='cd -'
 alias 2='cd -2'
 alias 3='cd -3'
@@ -124,6 +126,9 @@ alias 6='cd -6'
 alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
+
+# Improve fun while keeping control
+alias sl='sl -ela'
 
 # Increase keyboard responsiveness
 xset r rate 250 25
