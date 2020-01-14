@@ -36,9 +36,12 @@ Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'vimperator/vimperator.vim'
 Plugin 'lifepillar/pgsql.vim'
 Plugin 'chazy/cscope_maps'
+Plugin 'basilgor/vim-autotags'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'drewtempelmeyer/palenight.vim'
-"Plugin 'ycm-core/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'vimwiki/vimwiki'
+Plugin 'tpope/vim-surround'
 call vundle#end()
 
 filetype plugin indent on
@@ -207,6 +210,9 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+
+" Also use quickfix window for cscope results
+set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
 
 " Ignore in makefiles
 autocmd FileType make setlocal noexpandtab
@@ -430,7 +436,9 @@ set wildmenu
 set wildmode=list:longest
 
 " Highlight cursor line
-"set cursorline
+set cursorline
+hi cursorline cterm=none term=none
+highlight CursorLine guibg=#303000 ctermbg=234
 
 "------------------------------------------------------------------------------
 "   Colors
@@ -503,6 +511,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 "   Unsorted
 "==============================================================================
 
+"No differences between real and visual lines
 nnoremap j gj
 nnoremap k gk
 
