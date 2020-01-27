@@ -2,15 +2,12 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-
-#MODIFIER
-
 # set modifier
-#set $alt Mod1
 set $mod Mod4
 
-
-#FONTS
+#------------------------------------------------------------------------------
+# FONTS
+#------------------------------------------------------------------------------
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -24,7 +21,9 @@ set $mod Mod4
 font pango: Noto Sans 8
 
 
-#AUTOSTART
+#------------------------------------------------------------------------------
+# AUTOSTART
+#------------------------------------------------------------------------------
 
 # add a backgound
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/switzerland_alps_mountains_beautiful_landscape_3840x2400.jpg
@@ -46,7 +45,9 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id i3-msg 'workspace $w2; exec xterm'
 
 
-#WINDOWS
+#------------------------------------------------------------------------------
+# WINDOWS
+#------------------------------------------------------------------------------
 
 # Windows names
 set $w1  01
@@ -92,7 +93,9 @@ client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
 
 
-#BINDINGS
+#------------------------------------------------------------------------------
+# BINDINGS
+#------------------------------------------------------------------------------
 
 # start a terminal
 bindsym $mod+Return exec xterm
@@ -216,7 +219,6 @@ bindsym $mod+q focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -257,7 +259,9 @@ bindsym $mod+o move workspace to output left
 bindsym $mod+p move workspace to output right
 
 
-#APPS
+#------------------------------------------------------------------------------
+# APPS
+#------------------------------------------------------------------------------
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
@@ -266,8 +270,8 @@ bindsym $mod+p move workspace to output right
 # installed.
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
-bindsym $mod+Shift+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+bindsym $mod+d        exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
+bindsym $mod+Shift+d  exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
 
 # common apps keybinds
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
@@ -278,15 +282,19 @@ bindsym $mod+Shift+f exec firefox
 #bindsym $mod+Shift+g exec geany
 
 
-#OTHERS
+#------------------------------------------------------------------------------
+# OTHERS
+#------------------------------------------------------------------------------
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%    #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%    #decrease sound volume
+bindsym XF86AudioMute        exec pactl set-sink-mute 0 toggle   #mute sound
 
 
-#I3BAR
+#------------------------------------------------------------------------------
+# I3BAR
+#------------------------------------------------------------------------------
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
