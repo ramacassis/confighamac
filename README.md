@@ -11,9 +11,22 @@ Make sure it is properly installed, along with the themes in use.
 
 ## i3
 
+### Requirements
+
 Following softwares are currently required:
 
 * compton: handle windows transparency
 * feh: add a background
 
+## vim
+
+### Requirements
+
+Following softwares are currently required:
+
+* cscope, ctags
+
+Vim configuration uses Vundle as plugin manager:
+
+$ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
