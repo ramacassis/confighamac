@@ -50,16 +50,16 @@ exec --no-startup-id nm-applet
 #------------------------------------------------------------------------------
 
 # Windows names
-set $w1  01
-set $w2  02
-set $w3  03
-set $w4  04
-set $w5  05
+set $w1  "01: dev"
+set $w2  "02: dev"
+set $w3  "03: tasks"
+set $w4  "04: notes"
+set $w5  "05: www"
 set $w6  06
 set $w7  07
 set $w8  08
 set $w9  09
-set $w10 10
+set $w10 "10: misc"
 
 set $w11 11
 set $w12 12
