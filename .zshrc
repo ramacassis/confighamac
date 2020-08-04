@@ -131,7 +131,7 @@ alias 9='cd -9'
 alias sl='sl -ela'
 
 # Increase keyboard responsiveness
-xset r rate 250 25
+xset r rate 250 50
 
 # disable auto correct
 # unsetopt correct_all
@@ -142,6 +142,20 @@ compinit
 # disable cyclic autocomplete
 setopt noautomenu
 setopt nomenucomplete
+
+# -----------------------------------------------------------------------------
+# Functions
+# -----------------------------------------------------------------------------
+
+vpn_connect()
+{
+    sudo systemctl start openvpn@client
+    sudo systemd-tty-ask-password-agent --query
+}
+
+# -----------------------------------------------------------------------------
+# ZSH Theme
+# -----------------------------------------------------------------------------
 
 # spaceship-prompt configuration
 
