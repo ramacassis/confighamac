@@ -42,6 +42,7 @@ Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'vimwiki/vimwiki'
 Plugin 'tpope/vim-surround'
+Plugin 'psliwka/vim-smoothie'
 call vundle#end()
 
 filetype plugin indent on
@@ -147,8 +148,8 @@ let g:DoxygenToolkit_versionString = "1.0"
 "   Settings
 "------------------------------------------------------------------------------
 
-" Ignore case
-set ignorecase
+" Enable smart case (first requires option ignorecase)
+set ignorecase smartcase
 
 " Highlight previous search
 set hlsearch
@@ -220,6 +221,9 @@ autocmd FileType make setlocal noexpandtab
 " Indent Settings
 set autoindent
 set smartindent
+
+" Automatic bracket setting
+inoremap { {<CR>}<Esc>O
 
 "------------------------------------------------------------------------------
 "   Mappings
@@ -430,6 +434,9 @@ syntax enable
 " Obvious
 set number
 set relativenumber
+
+" Classic backspace behavior
+set backspace=indent,eol,start
 
 " Tab menu
 set wildmenu
