@@ -42,6 +42,7 @@ Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'vimwiki/vimwiki'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-vinegar'
 Plugin 'psliwka/vim-smoothie'
 call vundle#end()
 
@@ -51,32 +52,15 @@ filetype plugin indent on
 "   Global
 "==============================================================================
 
+" Clean previous mapping
+nnoremap <SPACE> <Nop>
+
 " Leader Key
-let mapleader=','
+let mapleader=' '
 
 "==============================================================================
 "   Extensions
 "==============================================================================
-
-"------------------------------------------------------------------------------
-"   Pathogen
-"------------------------------------------------------------------------------
-
-"call pathogen#infect()
-"call pathogen#helptags()
-
-"------------------------------------------------------------------------------
-"   Syntastic
-"------------------------------------------------------------------------------
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 2
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 1
 
 "------------------------------------------------------------------------------
 "   TagBar
@@ -100,10 +84,10 @@ let g:airline#extensions#tagbar#enabled = 1
 
 " Show as tree
 let g:netrw_liststyle = 3
-" Create tab to open file
-let g:netrw_browse_split = 3
-" Right splitting
-let g:netrw_altv = 1
+" Set window size
+let g:netrw_winsize = 20
+" Directly open file in previous window
+let g:netrw_browse_split = 4
 
 "------------------------------------------------------------------------------
 "   NerdCommenter
@@ -111,12 +95,6 @@ let g:netrw_altv = 1
 
 " Enable file type checking
 filetype plugin on
-
-"------------------------------------------------------------------------------
-"   YouCompleteMe
-"------------------------------------------------------------------------------
-
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 "------------------------------------------------------------------------------
 "   DoxygenToolKit
@@ -164,8 +142,8 @@ set noincsearch
 " Block searching
 vnoremap // y/<C-R>"<CR>
 
-" No highlight
-" nnoremap <C-L> :nohl<CR><C-L>
+" Disable highlight
+nnoremap <Leader>l :nohlsearch<CR>
 
 "==============================================================================
 "   Command Mode
@@ -493,7 +471,6 @@ set formatoptions+=t
 "   Invisible characters
 "------------------------------------------------------------------------------
 set list
-"set listchars=tab:▸·,nbsp:⏎
 set listchars=tab:▸·,nbsp:⏎,trail:␣
 "set listchars=tab:▸·,nbsp:⏎,trail:·
 
