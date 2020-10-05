@@ -15,36 +15,39 @@ runtime! archlinux.vim
 " and configure vim to your own liking!
 
 "==============================================================================
-"   Vundle
+"   Vim-plug
 "==============================================================================
 
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+"   Automate plugin installation process
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
 
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'majutsushi/tagbar'
-Plugin 'vim-scripts/VisIncr'
-Plugin 'vim-scripts/Align'
-Plugin 'vim-scripts/DoxygenToolkit.vim'
-Plugin 'vimperator/vimperator.vim'
-Plugin 'lifepillar/pgsql.vim'
-Plugin 'chazy/cscope_maps'
-Plugin 'basilgor/vim-autotags'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'drewtempelmeyer/palenight.vim'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'vimwiki/vimwiki'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-vinegar'
-Plugin 'psliwka/vim-smoothie'
-call vundle#end()
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
+Plug 'vimwiki/vimwiki'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Colorschemes
+Plug 'nanotech/jellybeans.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'morhetz/gruvbox'
+
+call plug#end()
 
 filetype plugin indent on
 
