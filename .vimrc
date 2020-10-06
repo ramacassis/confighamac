@@ -337,6 +337,16 @@ nnoremap <S-F8> :tabmove +1<CR>
 nnoremap <S-F7> :tabmove -1<CR>
 
 "==============================================================================
+"   Custom functions
+"==============================================================================
+
+command! Config execute ":e ~/.vimrc"
+command! Reload execute "source ~/.vimrc"
+
+" Remove extra space
+command CleanSpace  :%s/\s\+$//gc
+
+"==============================================================================
 "   StatusBar
 "==============================================================================
 
@@ -467,9 +477,6 @@ set listchars=tab:▸·,nbsp:⏎,trail:␣
 "------------------------------------------------------------------------------
 "   Tools
 "------------------------------------------------------------------------------
-
-" Remove extra space
-command CleanSpace  :%s/\s\+$//g
 
 " Autocorrect
 map <silent> <F9> "<Esc>:silent setlocal spell! spelllang=fr<CR>"
