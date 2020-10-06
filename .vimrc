@@ -99,28 +99,6 @@ let g:netrw_browse_split = 4
 " Enable file type checking
 filetype plugin on
 
-"------------------------------------------------------------------------------
-"   DoxygenToolKit
-"------------------------------------------------------------------------------
-let g:load_doxygen_syntax=1
-
-"let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-"let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_interCommentTag="* "
-let g:DoxygenToolkit_interCommentBlock="* "
-let g:DoxygenToolkit_endCommentTag="*/"
-let g:DoxygenToolkit_endCommentBlock="*/"
-
-let g:DoxygenToolkit_briefTag_post = "- "
-let g:DoxygenToolkit_briefTag_className = "yes"
-let g:DoxygenToolkit_briefTag_structName = "yes"
-let g:DoxygenToolkit_briefTag_enumName = "yes"
-let g:DoxygenToolkit_briefTag_namespaceName = "yes"
-let g:DoxygenToolkit_briefTag_funcName = "yes"
-
-let g:DoxygenToolkit_authorName = "Kamel Hacene"
-let g:DoxygenToolkit_versionString = "1.0"
-
 "==============================================================================
 "   Search mode
 "==============================================================================
@@ -148,6 +126,10 @@ vnoremap // y/<C-R>"<CR>
 " Disable highlight
 nnoremap <Leader>l :nohlsearch<CR>
 
+" Easiest word surrounding (with plugin 'vim-surround')
+nmap <Leader>" ysiW"
+
+
 "==============================================================================
 "   Command Mode
 "==============================================================================
@@ -155,8 +137,6 @@ nnoremap <Leader>l :nohlsearch<CR>
 "------------------------------------------------------------------------------
 "   Settings
 "------------------------------------------------------------------------------
-
-" Ctrl+v
 
 set virtualedit=block
 
@@ -170,14 +150,17 @@ set virtualedit=block
 " Remove EX mode
 "unmap Q
 
-" Formating
-" map Q gq
+" Formatting
+"map Q gq
 
-" Enter whithout insert mode
+" Empty line without entering insert mode
 nmap <A-o> o<Esc>k
 
-" Last command
-nnoremap § q:k$
+" Replay last Ex command
+nnoremap ^ q:k<CR>
+
+" FZF
+nnoremap <C-p> :<C-u>FZF<CR>
 
 "==============================================================================
 "   Insert Mode
@@ -187,24 +170,26 @@ nnoremap § q:k$
 "   Settings
 "------------------------------------------------------------------------------
 
-" Tab Settings
+" Tab settings
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
 
-" Also use quickfix window for cscope results
-set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+" Use soft tabs (i.e spaces)
+set expandtab
 
 " Ignore in makefiles
 autocmd FileType make setlocal noexpandtab
 
-" Indent Settings
+" Indent settings
 set autoindent
 set smartindent
 
+" Also use quickfix window for cscope results
+set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+
 " Automatic bracket setting
-inoremap { {<CR>}<Esc>O
+"inoremap { {<CR>}<Esc>O
 
 "------------------------------------------------------------------------------
 "   Mappings
@@ -212,8 +197,6 @@ inoremap { {<CR>}<Esc>O
 
 """ PageUp/Down
 
-map <PageUp> k
-map <PageDown> j
 imap <PageUp> <UP>
 imap <PageDown> <DOWN>
 
@@ -246,13 +229,13 @@ set mouse=
 
 """ Audio
 
-" No beep
+" No beep and no flash
 set visualbell
 set t_vb=
 
 """ Command line
 
-" Show the current wombat in the command line
+" Show ongoing command in last line
 set showcmd
 
 " Redraw only when necessary
@@ -269,81 +252,83 @@ set showmatch
 "   Splits
 "------------------------------------------------------------------------------
 
-" Move split tiles
+""" Settings
+set splitbelow
+set splitright
+
+""" Mappings
+
+" Move in split tiles
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-""" Settings
-set splitbelow
-set splitright
 
 "------------------------------------------------------------------------------
 "   Tabs
 "------------------------------------------------------------------------------
 
 """ Settings
+
 " Maximum number of tab pages
 set tabpagemax=100
 
-""" Tabs to splits
-function! VspN()
-  tabnext
+""" Convert tabs to splits
+" Remark: Do the opposite with built-in <C-W>T
+
+" Splits with Previous/Next tab
+function VsP()
+  tabprevious
   let var = expand('%')
   tabclose
-  tabprevious
-  execute "vsplit" . var
+  execute "vsplit " . var
 endfunction
-function! VspP()
+function SpP()
   tabprevious
   let var = expand('%')
   tabclose
-  tabnext
-  execute "vsplit" . var
+  execute "split " . var
 endfunction
-function! SpN()
+function VsN()
   tabnext
   let var = expand('%')
   tabclose
-  tabprevious
-  execute "split" . var
+  execute "vsplit " . var
 endfunction
-function! SpP()
-  tabprevious
+function SpN()
+  tabnext
   let var = expand('%')
   tabclose
-  tabnext
-  execute "split" . var
+  execute "split " . var
 endfunction
 
-command Tabvspp  call VspP()
-command Tabvsp   call VspN()
-command Tabspp   call SpP()
-command Tabsp    call SpN()
+command TabPrevVs   call VsP()
+command TabPrevSp   call SpP()
+command TabNextVs   call VsN()
+command TabNextSp   call SpN()
 
-" Diff tabs
-function! DVspN()
-  call VspN()
+" Diff with Previous/Next tab
+function DVsP()
+  call VsP()
   windo diffthis
 endfunction
-function! DVspP()
-  call VspP()
-  windo diffthis
-endfunction
-function! DSpN()
-  call SpN()
-  windo diffthis
-endfunction
-function! DSpP()
+function DSpP()
   call SpP()
   windo diffthis
 endfunction
+function DVsN()
+  call VsN()
+  windo diffthis
+endfunction
+function DSpN()
+  call SpN()
+  windo diffthis
+endfunction
 
-command DiffTabNext       call DVspP()
-command DiffTabPrevious   call DVspN()
-command DiffVTabNext      call DSpP()
-command DiffVTabPrevious  call DSpN()
+command DiffTabPrevVs   call DVsP()
+command DiffTabPrevSp   call DSpP()
+command DiffTabNextVs   call DVsN()
+command DiffTabNextSp   call DSpN()
 
 " Move tab
 nnoremap <F7> :tabp<CR>
@@ -405,8 +390,8 @@ set statusline+=%04l/%04L[%P]       " Current line / Total lines
 "   Cosmetic
 "==============================================================================
 
-syntax on
 syntax enable
+syntax on
 
 "------------------------------------------------------------------------------
 "   Settings
