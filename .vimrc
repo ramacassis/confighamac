@@ -140,9 +140,6 @@ nmap <Leader>" ysiW"
 
 set virtualedit=block
 
-" Opposite of Shift-J
-" nnoremap <C-J> ciW<CR><Esc>:if match( @", "^\\s*$") < 0<Bar>exec "norm P-$diw+"<Bar>endif<CR>
-
 "------------------------------------------------------------------------------
 "   Mappings
 "------------------------------------------------------------------------------
@@ -220,8 +217,8 @@ set noautowrite
 " No hidden buffers
 set nohidden
 
-" Clipboard buffer
-" set clipboard=unnamed
+" Clipboard buffer: unnamed register equivalent to "* register
+set clipboard=unnamed
 
 """ Mouse
 " No mouse
@@ -434,6 +431,7 @@ colors default
 "colorscheme solarized
 "colorscheme mustang
 "colorscheme palenight
+"colorscheme gruvbox
 
 " Columns
 " Color
@@ -446,45 +444,25 @@ set formatoptions+=t
 "   Highlighting
 "------------------------------------------------------------------------------
 
-:highlight ExtraWhitespace ctermbg=brown guibg=red
-:match ExtraWhitespace /\s\+$/
-:autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-:autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-:autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+highlight ExtraWhitespace ctermbg=brown guibg=red
+match ExtraWhitespace /\s\+$/
 
-":highlight Goil_RightCommand ctermbg=blue guibg=blue
-":syntax region Goil_Command start="/if/" end="/end/"
-":autocmd BufWinEnter * match Goil_Command /if/
-":autocmd InsertEnter * match Goil_Command /if/
-":autocmd InsertLeave * match Goil_Command /if/
-
-" :highlight HighlightTab ctermbg=blue guibg=blue
-" :match HighlightTab /\t\+/
-" :autocmd BufWinEnter * match HighlightTab /\t\+/
-" :autocmd InsertLeave * match HighlightTab /\t\+/
-
-:autocmd BufWinLeave * call clearmatches()
+" Highlight colors
+highlight Search cterm=NONE ctermfg=black ctermbg=yellow
 
 "------------------------------------------------------------------------------
 "   Invisible characters
 "------------------------------------------------------------------------------
+
 set list
 set listchars=tab:▸·,nbsp:⏎,trail:␣
-"set listchars=tab:▸·,nbsp:⏎,trail:·
-
-
 
 "------------------------------------------------------------------------------
 "   Tools
 "------------------------------------------------------------------------------
 
-" Autocorrect
-map <silent> <F9> "<Esc>:silent setlocal spell! spelllang=fr<CR>"
-
-" Type ?
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" Toggle autocorrect
+map <F9> :setlocal spell! spelllang=fr<CR>
 
 "==============================================================================
 "   Unsorted
@@ -493,7 +471,3 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 "No differences between real and visual lines
 nnoremap j gj
 nnoremap k gk
-
-nnoremap gV `[v`]
-
-vmap <C-T> !sed '1i\ ' \| txt2tags -H -t tex -i -
