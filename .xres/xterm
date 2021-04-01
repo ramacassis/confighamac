@@ -1,0 +1,32 @@
+! xterm
+
+#define WINDOWGEOMETRY 90x20
+
+! Appearance
+xterm*dynamiccolors:      true
+xterm*utf8:               2
+xterm*geometry:           WINDOWGEOMETRY
+xterm*visualBell:         off
+xterm*highlightSelection: true
+
+! Fonts
+!xterm*faceName: terminus-10
+!xterm*faceName: Source Code Pro for Powerline-10
+XTerm*faceName: DejaVu Sans Mono for Powerline
+XTerm*faceSize: 14
+
+! VT Font Menu: Unreadable
+xterm*faceSize1: 8
+! VT font menu: Tiny
+xterm*faceSize2: 10
+! VT font menu: Medium
+xterm*faceSize3: 12
+! VT font menu: Large
+xterm*faceSize4: 16
+! VT font menu: Huge
+xterm*faceSize5: 22
+
+xterm*VT100.Translations: #override \
+    Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font() \n\
+    Ctrl <Key> 0: set-vt-font(d)
