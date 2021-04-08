@@ -2,10 +2,10 @@
 
 #define FN_SIZE   14
 
-*.font:           xft:Hack:style=Regular:size=FN_SIZE
-*.boldFont:       xft:Hack:style=Bold:size=FN_SIZE
-*.italicFont:     xft:Hack:style=Italic:size=FN_SIZE
-*.boldItalicFont: xft:Hack:style=Bold Italic:size=FN_SIZE
+*.font:           xft:Hack Nerd Font Mono:style=Regular:size=FN_SIZE
+*.boldFont:       xft:Hack Nerd Font Mono:style=Bold:size=FN_SIZE
+*.italicFont:     xft:Hack Nerd Font Mono:style=Italic:size=FN_SIZE
+*.boldItalicFont: xft:Hack Nerd Font Mono:style=Bold Italic:size=FN_SIZE
 
 ! TERMINAL COLORS
 #include "/home/rayanm/.Xresources.d/gruvbox-urxvt256.xresources"
