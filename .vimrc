@@ -38,9 +38,9 @@ Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
 Plug 'vimwiki/vimwiki'
+Plug 'dkprice/vim-easygrep'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 " Colorschemes
 Plug 'nanotech/jellybeans.vim'
@@ -98,6 +98,14 @@ let g:netrw_browse_split = 4
 
 " Enable file type checking
 filetype plugin on
+
+"------------------------------------------------------------------------------
+"   Vim-fugitive
+"------------------------------------------------------------------------------
+
+nmap <Leader>gd :diffget //2<CR>
+nmap <Leader>gj :diffget //3<CR>
+nmap <Leader>gs :G<CR>
 
 "==============================================================================
 "   Search mode
@@ -159,6 +167,18 @@ nnoremap ^ q:k<CR>
 " FZF
 nnoremap <C-p> :<C-u>FZF<CR>
 
+" Replace without putting in a register
+vnoremap <Leader>p "_dP
+
+" Replace visual selection with user input
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" For snake case coding style
+nnoremap <Leader>c ct_
+
+" Directly display function name
+nnoremap [[ [[k
+
 "==============================================================================
 "   Insert Mode
 "==============================================================================
@@ -178,7 +198,13 @@ set expandtab
 " Ignore in makefiles
 autocmd FileType make setlocal noexpandtab
 
-" Indent settings
+" File-specific settings
+autocmd BufRead      *.c,*.cpp,*.h     set tabstop=4 shiftwidth=4 noexpandtab
+
+" Rebuild ctags index when saving file (disabling is adviced for large projects)
+autocmd BufWritePost *.c,*.cpp,*.h     call system('ctags -R &> ctags.out')
+
+" Indent Settings
 set autoindent
 set smartindent
 
@@ -333,6 +359,13 @@ nnoremap <F8> :tabn<CR>
 nnoremap <S-F8> :tabmove +1<CR>
 nnoremap <S-F7> :tabmove -1<CR>
 
+function DupFile()
+    tabedit %
+    tabprevious
+endfunction
+
+command Dup call DupFile()
+
 "==============================================================================
 "   Custom functions
 "==============================================================================
@@ -424,14 +457,22 @@ highlight CursorLine guibg=#303000 ctermbg=234
 "   Colors
 "------------------------------------------------------------------------------
 
+" True color terminal
+"set termguicolors
+
 " Background
 set background=dark
-colors default
+"colors default
 "colors jellybeans
 "colorscheme solarized
 "colorscheme mustang
 "colorscheme palenight
-"colorscheme gruvbox
+colorscheme gruvbox
+
+if g:colors_name == "gruvbox"
+    highlight Normal ctermbg=0 guibg=#202020
+    highlight Search guibg=yellow guifg=black
+endif
 
 " Columns
 " Color
@@ -471,3 +512,20 @@ map <F9> :setlocal spell! spelllang=fr<CR>
 "No differences between real and visual lines
 nnoremap j gj
 nnoremap k gk
+
+"Back to normal mode
+inoremap jk <esc>
+
+nnoremap gV `[v`]
+
+nnoremap <Leader>k :grep! -rin --exclude="tags" --exclude="cscope.out" --include="*\.[ch]" <cword> .<CR><CR>
+nnoremap <Leader>q :copen<CR>
+
+nnoremap <Leader>ev :tabedit ~/.vimrc<CR>
+nnoremap <Leader>sv :source  ~/.vimrc<CR>
+
+" Stay at current position for first search
+nnoremap * *N
+
+" Quickly hide/show line numbers
+nnoremap <Leader>n :set number! relativenumber!<CR>
