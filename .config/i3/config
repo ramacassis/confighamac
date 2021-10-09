@@ -40,6 +40,9 @@ exec --no-startup-id xrdb ~/.Xresources
 # add network-manager status bar shortcut
 exec --no-startup-id nm-applet
 
+# picom compositor for terminals opacity
+exec_always --no-startup-id $HOME/.config/picom/launch.sh
+
 # launch some apps
 #exec --no-startup-id i3-msg 'workspace $w1; exec firefox'
 #exec --no-startup-id i3-msg 'workspace $w2; exec xterm'
@@ -294,8 +297,6 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%    #increase sound
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%    #decrease sound volume
 bindsym XF86AudioMute        exec pactl set-sink-mute 0 toggle   #mute sound
 
-# Picom compositor for terminals opacity
-exec_always --no-startup-id $HOME/.config/picom/launch.sh
 
 #------------------------------------------------------------------------------
 # I3BAR

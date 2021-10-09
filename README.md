@@ -32,7 +32,7 @@ Make sure it is properly installed, along with the themes in use.
 
 Following softwares are currently required:
 
-* compton: handle windows transparency
+* picom: handle windows transparency
 * feh: add a background
 
 ## vim
