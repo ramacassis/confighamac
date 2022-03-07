@@ -153,13 +153,41 @@ setopt nomenucomplete
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# -----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Functions
-# -----------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
-vpn_connect()
+function goto()
 {
-    sudo systemctl start openvpn@client
-    sudo systemd-tty-ask-password-agent --query
+    dir1_path=""
+    dir2_path=""
+    dir3_path=""
+
+    if [ $# -eq 0 ]; then
+        echo "No argument given."
+        echo "\tUsage : goto dir1|dir2|dir3"
+        return 1
+    else
+        local l_path=$1
+    fi
+
+    case $l_path in
+
+        dir1)
+            cd ${dir1_path}
+            ;;
+        dir2)
+            cd ${dir2_path}
+            ;;
+        dir3)
+            cd ${dir3_path}
+            ;;
+        *)
+            echo "Unknown path"
+            return 1
+            ;;
+    esac
+
+    return 0
 }
 
