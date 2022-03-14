@@ -1,0 +1,5 @@
+[diff]
+	tool = vimdiff
+[alias]
+	st = status
+	co = checkout
