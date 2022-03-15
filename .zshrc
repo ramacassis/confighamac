@@ -80,7 +80,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-unalias -m '*'
 
 # User configuration
 
@@ -113,6 +112,9 @@ export LESS="-iXFR"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Uncomment if you don't like default aliases
+# unalias -m '*'
+
 alias ls='ls --color=auto'
 alias ll='ls -larth'
 
@@ -121,8 +123,13 @@ alias grep='grep --color'
 alias h='history'
 
 alias vim='vim -p'
+alias nvim='nvim -p'
+
+alias v='nvim'
 
 alias pwdc='pwd | tr -d "\n" | xclip'
+
+alias diff='diff -Naur'
 
 alias 1='cd -'
 alias 2='cd -2'
