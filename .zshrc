@@ -11,8 +11,6 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-export TERM="xterm-256color"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -83,7 +81,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL="$EDITOR"
 
 export LESS="-iXFR"
@@ -145,7 +143,7 @@ alias 9='cd -9'
 alias sl='sl -ela'
 
 # Increase keyboard responsiveness
-xset r rate 250 50
+xset r rate 200 40
 
 # disable auto correct
 # unsetopt correct_all
@@ -202,3 +200,11 @@ function goto()
     return 0
 }
 
+#------------------------------------------------------------------------------
+# Project configuration (specific to current project)
+#------------------------------------------------------------------------------
+
+#export ARCH=arm
+#export CROSS_COMPILE=arm-linux-gnueabi-
+
+#export PATH=$PATH:
